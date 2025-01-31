@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>生活活動強度選択</title>
+</head>
+<body>
+<h1>あなたの生活活動強度を選択してください</h1>
+<form th:action="@{/BasalMetabolism}" method="post">
+    <input type="hidden" name="sex" th:value="${sex}" />
+    <input type="hidden" name="weight" th:value="${weight}" />
+    <input type="hidden" name="height" th:value="${height}" />
+    <input type="hidden" name="age" th:value="${age}" />
+
+    <label for="activityLevel">活動レベルを選択してください:</label>
+    <select name="activityLevel" id="activityLevel" required>
+        <option th:value="0" disabled selected>選択してください</option>
+        <option th:value="1.2">ほとんど運動しない</option>
+        <option th:value="1.375">軽い運動をする</option>
+        <option th:value="1.55">中程度の運動をする</option>
+        <option th:value="1.725">激しい運動をする</option>
+        <option th:value="1.9">非常に激しい運動をする</option>
+    </select>
+
+    <button type="submit">計算する</button>
+</form>
+</body>
+</html>
