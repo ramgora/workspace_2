@@ -10,22 +10,19 @@ public class BasalMetabolismController {
     private final PfcController pfcController;
 
     public BasalMetabolismController(PfcController pfcController) {
+
         this.pfcController = pfcController;
     }
-/*@GetMapping("/PFCForm")
-    public String showMuscleSelectionForm() {
-        return "PFCForm";  // PFCForm.html を表示
-    }*/
 
     @GetMapping("/InputSex")
     public String inputForm() {
-        return "sex"; // 性別入力フォームのテンプレート
+        return "sex"; //性別入力フォーム
     }
 
     @PostMapping("/InputSex")
     public String showDetailsInput(@RequestParam("sex") String sex, Model model) {
         model.addAttribute("sex", sex);
-        return "HealthDetailsForm"; // 身長・体重・年齢の入力フォーム
+        return "HealthDetailsForm"; //身長・体重・年齢の入力フォーム
     }
 
     @PostMapping("/HealthDetailsForm")
@@ -39,7 +36,7 @@ public class BasalMetabolismController {
         model.addAttribute("weight", weight);
         model.addAttribute("height", height);
         model.addAttribute("age", age);
-        return "activityLevelForm"; // 活動強度を選択するフォーム
+        return "activityLevelForm"; //生活活動強度を選択するフォーム
     }
 
     @PostMapping("/PFCForm")
@@ -55,7 +52,7 @@ public class BasalMetabolismController {
         model.addAttribute("height", height);
         model.addAttribute("age", age);
         model.addAttribute("activityLevel", activityLevel);
-        return "PFCForm";  // PFCForm.html を表示
+        return "PFCForm";  //PFCForm.htmlのやつ
     }
 
     @PostMapping("/BasalMetabolism")
@@ -68,9 +65,6 @@ public class BasalMetabolismController {
             @RequestParam("muscle") String muscle,
             Model model
     ) {
-        if (muscle == null || muscle.isEmpty()) {
-            throw new IllegalArgumentException("エラー: muscle パラメータが送信されていません！");
-        }
         System.out.println("受け取った muscle の値: " + muscle);
 
         double intBmr;
@@ -79,6 +73,7 @@ public class BasalMetabolismController {
         } else {
             intBmr = 9.247 * weight + 3.098 * height - 4.33 * age + 447.593;
         }
+
         int bmr = (int) intBmr;
         double intTdee = intBmr * activityLevel;
         int tdee = (int) intTdee;
@@ -86,53 +81,10 @@ public class BasalMetabolismController {
         model.addAttribute("bmrValue", bmr);
         model.addAttribute("tdeeValue", tdee);
 
-        System.out.println("受け取った muscle の値: " + bmr);
-        System.out.println("受け取った muscle の値: " + tdee);
-
-        //TODO　PFCフォームに値を渡すこと。
+        System.out.println("基礎代謝" + bmr);
+        System.out.println("消費カロリー" + tdee);
 
         BmrDTO result = new BmrDTO(bmr, tdee);
         return pfcController.calculatePFC(muscle, result);
-
-
-
-
     }
 }
-
-
-/*@PostMapping("")
-public ModelAndView pfcController(
-        @RequestParam("muscle") String muscle,
-        @ModelAttribute BmrDTO result
-) {
-
-    double intCarbohydrate;
-    double intFat;
-    double intProtein;
-
-
-    if ("gain".equalsIgnoreCase(muscle)) {
-        // P30％・ F30％・ C40％
-        intCarbohydrate = (result.getTdee() * 0.4) / 4;
-        intFat = (result.getTdee() * 0.3) / 9;
-        intProtein = (result.getTdee() * 0.3) / 4;
-    } else {
-        // P30％・ F10％・ C60％
-        intCarbohydrate = (result.getTdee() * 0.6) / 4;
-        intFat = (result.getTdee() * 0.1) / 9;
-        intProtein = (result.getTdee() * 0.3) / 4;
-    }
-
-    int carbohydrate = (int) intCarbohydrate;
-    int fat = (int) intFat;
-    int protein = (int) intProtein;
-
-    ModelAndView modelAndView = new ModelAndView("PFCresult");
-    modelAndView.addObject("carbohydrateValue", carbohydrate);
-    modelAndView.addObject("fatValue", fat);
-    modelAndView.addObject("proteinValue", protein);
-
-    return modelAndView;
-}
-}*/
