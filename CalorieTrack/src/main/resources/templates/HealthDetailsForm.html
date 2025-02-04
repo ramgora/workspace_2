@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>あなたの身体情報を入力してください。</title>
+</head>
+<body>
+<h1>身体情報を入力してください</h1>
+<form class = "center" th:action="@{/HealthDetailsForm}" method = "post">
+     <input type="hidden" name = "sex" th:value="${sex}">
+    <table>
+        <tr>
+            <td><label for="weight">体重:</label></td>
+            <td><input type="number" id = weight name = "weight" required><br></td>
+        </tr>
+
+        <tr>
+            <td><label for="height">身長:</label></td>
+            <td><input type="number" id = height name = "height" required><br></td>
+        </tr>
+
+        <tr>
+            <td><label for="age">年齢:</label></td>
+            <td><input type="number" id = "age" name = "age" required><br></td>
+        </tr>
+    </table>
+    <button type="submit">次へ</button>
+
+</form>
+</body>
+</html>

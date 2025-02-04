@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>選択フォーム</title>
+</head>
+
+<body>
+<form th:action="@{/BasalMetabolism}" method="post">
+    <input type="hidden" name="sex" th:value="${sex}">
+    <input type="hidden" name="weight" th:value="${weight}">
+    <input type="hidden" name="height" th:value="${height}">
+    <input type="hidden" name="age" th:value="${age}">
+    <input type="hidden" name="activityLevel" th:value="${activityLevel}">
+
+    <h1>減量したいですか？増量(筋量を増やす)したいですか？</h1>
+
+    <input type="radio" id="gain" name="muscle" value="gain" required>
+    <label for="gain">増量する</label><br>
+    <input type="radio" id="lose" name="muscle" value="lose" required>
+    <label for="lose">減量する</label><br>
+
+    <button type="submit">次へ</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>選択フォーム</title>
+
+</head>
+<body>
+<form th:action="@{/InputSex}" method="post">
+<h1>性別を選択してください</h1>
+    <p>
+    <input type="radio" id="1" name="sex" value="man">
+    <label for="1">男性</label><br>
+    <input id="2" name="sex" type="radio" value="woman">
+    <label for="1">女性</label><br>
+    <button type="submit">送信</button>
+    </p>
+</form>
+</body>
+</html>

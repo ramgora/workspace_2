@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>PFC値の算出</title>
+</head>
+<body>
+<h1>あなたに必要なPFC値の算出</h1>
+
+<p>炭水化物量: <span th:text="${carbohydrateValue}"></span>g</p>
+<p>脂質量: <span th:text="${fatValue}"></span>g</p>
+<p>タンパク質量: <span th:text="${proteinValue}"></span>g</p>
+</body>
+
+<body>
+<h1>BMR計算結果</h1>
+
+<p>基礎代謝率 (BMR): <span th:text="${bmrValue}"></span>kcal</p>
+<p>総消費エネルギー量 (TDEE): <span th:text="${tdeeValue}"></span>kcal</p>
+
+</body>
+</html>
