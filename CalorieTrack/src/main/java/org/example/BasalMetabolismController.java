@@ -16,7 +16,7 @@ public class BasalMetabolismController {
 
     @GetMapping("/InputSex")
     public String inputForm() {
-        return "sex"; //性別入力フォーム
+        return "sex";//性別入力フォーム
     }
 
     @PostMapping("/InputSex")
